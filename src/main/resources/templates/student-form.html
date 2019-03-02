@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Student Registration Form</title>
+</head>
+<body>
+    <form action="#" th:action="@{processForm}" th:object="${student}" method="post">
+        <p>First Name (*): <input type="text" th:field="*{firstName}" />
+            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" style="color: red" ></span>
+        </p>
+
+        <p>Last Name (*): <input type="text" th:field="*{lastName}" />
+            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" style="color: red" ></span>
+        </p>
+
+        <p>Age (*): <input type="number" th:field="*{age}" />
+            <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}" style="color: red" ></span>
+        </p>
+
+        <p>Course Code (*): <input type="text" th:field="*{courseCode}" />
+            <span th:if="${#fields.hasErrors('courseCode')}" th:errors="*{courseCode}" style="color: red" ></span>
+        </p>
+
+        <p>Country: <select th:field="*{country}">
+            <option th:each="item: ${student.countryOptions}" th:value="${item.key}" th:text="${item.value}"></option>
+        </select></p>
+
+        <p><i>*required fields</i></p>
+
+        <input type="submit" value="Submit" />
+
+    </form>
+</body>
+</html>
